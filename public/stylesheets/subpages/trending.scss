@@ -1,0 +1,230 @@
+@mixin sections-trending {
+  $section-name: &;
+
+  &-container {
+    margin: 20px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  &__title {
+    font-size: 54px;
+    color: $accent-color;
+    font-family: $logo-font;
+    user-select: none;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 0.2s forwards;
+    margin: 30px 0;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background-color: $div-background;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+
+    &:hover {
+      transform: translateX(8px);
+    }
+
+    &-left, &-right {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 30px;
+    }
+
+    &-number {
+      color: $accent-color;
+      font-size: 36px;
+      font-family: $logo-font;
+      user-select: none;
+      min-width: 40px;
+      text-align: center;
+    }
+
+    &-info, &-duration, &-views {
+      font-size: 28px;
+      color: $text-color;
+      font-family: $base-font;
+      user-select: none;
+    }
+
+    &-genre {
+      color: lighten($text-color, 20%);
+      font-size: 24px;
+      font-style: italic;
+    }
+
+    &-img {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      height: 80px;
+      transition: all 0.3s ease;
+      user-select: none;
+      pointer-events: none;
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    &-buttons {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+  }
+
+  &__buttons {
+    &-play {
+      width: 100px;
+      height: 45px;
+      border-radius: 8px;
+      border: none;
+      background-color: $button-color;
+      transition: all 0.3s ease;
+      user-select: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        transition: left 0.5s;
+      }
+
+      &:hover {
+        background: $button-hover-color;
+        transform: translateY(-2px) scale(1.05);
+
+        &::before {
+          left: 100%;
+        }
+      }
+
+      &:active {
+        transform: translateY(0) scale(0.98);
+      }
+
+      img {
+        width: 24px;
+        height: 24px;
+        pointer-events: none;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover img {
+        transform: scale(1.1);
+      }
+    }
+
+      &:hover {
+        background-color: darken($button-hover-color, 15%);
+      }
+    }
+  }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toptracks {
+  @include sections-trending;
+
+  &__item {
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.1}s;
+      }
+    }
+  }
+
+  &__buttons {
+    &-play {
+      opacity: 1;
+      animation: none;
+    }
+  }
+}
+
+.topalbums {
+  @include sections-trending;
+
+  &__item {
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.1 + 0.2}s;
+      }
+    }
+  }
+
+  &__buttons {
+    &-play {
+      opacity: 1;
+      animation: none;
+    }
+  }
+}
+
+.topeps {
+  @include sections-trending;
+
+  &__item {
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.1 + 0.2}s;
+      }
+    }
+  }
+
+  &__buttons {
+    &-play {
+      opacity: 1;
+      animation: none;
+    }
+  }
+}
+
+.no-data {
+  font-size: 28px;
+  color: $text-color;
+  text-align: center;
+  font-family: $base-font;
+  padding: 40px 0;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.4s forwards;
+}

@@ -1,0 +1,107 @@
+<section class="toptracks">
+    <div class="toptracks-container">
+        <h1 class="toptracks__title">Top 10 Tracks</h1>
+        <div class="toptracks__items">
+            <% if (songs && songs.length > 0) { %>
+                <% songs.forEach((track, i) => { %>
+                    <div class="toptracks__item">
+                        <div class="toptracks__item-left">
+                            <p class="toptracks__item-number"><%= i + 1 %></p>
+                            <div class="toptracks__item-image">
+                                <img class="toptracks__item-img" src="<%= track.avatar_url || '/images/test-label.png' %>" alt="<%= track.name %>">
+                            </div>
+                            <p class="toptracks__item-info">
+                                <%= track.name %> - <%= track.author_name %>
+                                <% if (track.genre_name) { %>
+                                    <span class="toptracks__item-genre">(<%= track.genre_name %>)</span>
+                                <% } %>
+                            </p>
+                        </div>
+                        <div class="toptracks__item-right">
+                            <p class="toptracks__item-views"><%= track.views.toLocaleString() %> views</p>
+                            <div class="toptracks__item-buttons">
+                                <a href="/entity/<%= track.id %>" target="_blank" class="toptracks__buttons-play">
+                                    <img src="/images/button-play.png" alt="Play">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="no-data">No trending tracks available</p>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<section class="topalbums">
+    <div class="topalbums-container">
+        <h1 class="topalbums__title">Top Albums</h1>
+        <div class="topalbums__items">
+            <% if (albums && albums.length > 0) { %>
+                <% albums.forEach((album, i) => { %>
+                    <div class="topalbums__item">
+                        <div class="topalbums__item-left">
+                            <p class="topalbums__item-number"><%= i + 1 %></p>
+                            <div class="topalbums__item-image">
+                                <img class="topalbums__item-img" src="<%= album.avatar_url || '/images/test-label.png' %>" alt="<%= album.name %>">
+                            </div>
+                            <p class="topalbums__item-info">
+                                <%= album.name %> - <%= album.author_name %>
+                                <% if (album.genre_name) { %>
+                                    <span class="topalbums__item-genre">(<%= album.genre_name %>)</span>
+                                <% } %>
+                            </p>
+                        </div>
+                        <div class="topalbums__item-right">
+                            <p class="topalbums__item-views"><%= album.views.toLocaleString() %> views</p>
+                            <div class="topalbums__item-buttons">
+                                <a href="/entity/<%= album.id %>" target="_blank" class="topalbums__buttons-play">
+                                    <img src="/images/button-play.png" alt="Play">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="no-data">No trending albums available</p>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<section class="topeps">
+    <div class="topeps-container">
+        <h1 class="topeps__title">Top EPs</h1>
+        <div class="topeps__items">
+            <% if (eps && eps.length > 0) { %>
+                <% eps.forEach((ep, i) => { %>
+                    <div class="topeps__item">
+                        <div class="topeps__item-left">
+                            <p class="topeps__item-number"><%= i + 1 %></p>
+                            <div class="topeps__item-image">
+                                <img class="topeps__item-img" src="<%= ep.avatar_url || '/images/test-label.png' %>" alt="<%= ep.name %>">
+                            </div>
+                            <p class="topeps__item-info">
+                                <%= ep.name %> - <%= ep.author_name %>
+                                <% if (ep.genre_name) { %>
+                                    <span class="topeps__item-genre">(<%= ep.genre_name %>)</span>
+                                <% } %>
+                            </p>
+                        </div>
+                        <div class="topeps__item-right">
+                            <p class="topeps__item-views"><%= ep.views.toLocaleString() %> views</p>
+                            <div class="topeps__item-buttons">
+                                <a href="/entity<%= ep.id %>" target="_blank" class="topeps__buttons-play">
+                                    <img src="/images/button-play.png" alt="Play">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="no-data">No trending EPs available</p>
+            <% } %>
+        </div>
+    </div>
+</section>

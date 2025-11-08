@@ -1,0 +1,44 @@
+<section class="profile-history">
+    <div class="profile-history-container">
+        <h1 class="profile-history__title">Profile History - <%= profile.nickname %></h1>
+
+        <div class="profile-history-content">
+            <% if (history && history.length > 0) { %>
+                <% history.forEach((record, index) => { %>
+                    <div class="profile-history-card">
+                        <div class="profile-history-header">
+                            <h3 class="profile-history-version">Version <%= history.length - index %></h3>
+                            <span class="profile-history-date"><%= formatDate(record.updated_at) %></span>
+                        </div>
+
+                        <div class="profile-history-details">
+                            <div class="profile-history-avatar">
+                                <img src="<%= record.avatar_url %>" alt="Avatar" class="profile-history-avatar__image">
+                            </div>
+
+                            <div class="profile-history-info">
+                                <div class="profile-history-item">
+                                    <strong>Gender:</strong> <%= record.gender %>
+                                </div>
+                                <div class="profile-history-item">
+                                    <strong>Description:</strong>
+                                    <p class="profile-history-description"><%= record.description %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="profile-history-empty">
+                    <p>No profile history available</p>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="profile-history-actions">
+            <a href="/profile/<%= profile.id %>" class="profile-actions-button profile-actions-button--primary">
+                Back to Profile
+            </a>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,84 @@
+<section class="entity-hero">
+    <div class="entity-hero-container" data-entity-id="<%= entity.id %>">
+        <div class="entity-hero-card">
+            <div class="entity-hero-content">
+                <div class="entity-hero-image">
+                    <img src="<%= entity.avatar_url %>" alt="<%= entity.name %>" class="entity-hero-image__img">
+                    <div class="entity-hero-badge entity-hero-badge--<%= entity.type.toLowerCase() %>">
+                        <%= entity.type %>
+                    </div>
+                </div>
+
+                <div class="entity-hero-info">
+                    <h1 class="entity-hero-info__title"><%= entity.name %></h1>
+
+                    <div class="entity-hero-meta">
+                        <div class="entity-hero-meta__item">
+                            <span class="entity-hero-meta__label">Author:</span>
+                            <span class="entity-hero-meta__value"><%= entity.author_name %></span>
+                        </div>
+
+                        <div class="entity-hero-meta__item">
+                            <span class="entity-hero-meta__label">Genre:</span>
+                            <span class="entity-hero-meta__value"><%= entity.genre_name %></span>
+                        </div>
+
+                        <div class="entity-hero-meta__item">
+                            <span class="entity-hero-meta__label">Uploaded:</span>
+                            <span class="entity-hero-meta__value"><%= entity.formatted_created_at %></span>
+                        </div>
+
+                        <div class="entity-hero-meta__item">
+                            <span class="entity-hero-meta__label">Views:</span>
+                            <span class="entity-hero-meta__value"><%= entity.views.toLocaleString() %></span>
+                        </div>
+                    </div>
+
+                    <% if (entity.description) { %>
+                        <div class="entity-hero-description">
+                            <h3 class="entity-hero-description__title">Description</h3>
+                            <p class="entity-hero-description__content"><%= entity.description %></p>
+                        </div>
+                    <% } %>
+
+                    <div class="entity-hero-actions">
+                        <a href="<%= entity.entity_url %>" target="_blank" class="entity-hero-button entity-hero-button--primary">
+                            Listen on External Source
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<% if (['Album', 'EP'].includes(entity.type) && tracks && tracks.length > 0) { %>
+    <section class="entity-tracks">
+        <div class="entity-tracks-container">
+            <h2 class="entity-tracks__title">Tracks</h2>
+            <div class="entity-tracks-card">
+                <div class="entity-tracks-list">
+                    <% tracks.forEach((track, index) => { %>
+                        <div class="entity-track-item" data-track-id="<%= track.id %>">
+                            <div class="entity-track-item__left">
+                                <div class="entity-track-item__order">
+                                    <%= track.track_order %>
+                                </div>
+                                <div class="entity-track-item__info">
+                                    <h4 class="entity-track-item__name"><%= track.name %></h4>
+                                </div>
+                            </div>
+                            <div class="entity-track-item__right">
+                                <div class="entity-track-item__buttons">
+                                    <a href="<%= track.url_link %>" target="_blank" class="entity-track-item__buttons-play">
+                                        <img src="/images/button-play.png" alt="Play">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </section>
+<% } %>

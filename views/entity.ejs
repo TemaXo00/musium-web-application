@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <title>Musium - <%= title %> </title>
+</head>
+<body>
+<header>
+    <%- include('partials/header') %>
+    <%- include('partials/search-field') %>
+</header>
+
+<main id="content-container">
+    <%- include('pages/entity') %>
+</main>
+
+<footer>
+    <%- include('partials/footer') %>
+</footer>
+
+<script src="/scripts/navigation-handler.js"></script>
+<script src="/scripts/user-menu.js"></script>
+<script src="/scripts/search-handler.js"></script>
+
+</body>
+</html>

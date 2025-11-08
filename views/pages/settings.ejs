@@ -1,0 +1,138 @@
+<section class="settings-profile">
+    <div class="settings-profile-container">
+        <h1 class="settings-profile__title">Profile Settings</h1>
+        <div class="settings-profile-card">
+            <div class="settings-profile-avatar">
+                <img src="<%= profile.avatar_url %>" alt="<%= profile.nickname %>" class="settings-profile-avatar__image">
+                <div class="settings-profile-avatar__name"><%= profile.nickname %></div>
+                <div class="settings-profile-avatar__status"><%= profile.status %></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="settings-section">
+    <div class="settings-section-container">
+        <h2 class="settings-section__title">Account Settings</h2>
+
+        <div class="settings-item">
+            <div class="settings-item__header">
+                <h3 class="settings-item__title">Nickname</h3>
+                <span class="settings-item__value" id="currentNickname"><%= profile.nickname %></span>
+            </div>
+            <div class="settings-item__content">
+                <form class="settings-form" id="nicknameForm">
+                    <div class="settings-form-group">
+                        <input type="text" class="settings-form-control" id="nicknameInput"
+                               value="<%= profile.nickname %>" placeholder="Enter new nickname">
+                        <div class="settings-form-error" id="nicknameError"></div>
+                    </div>
+                    <button type="submit" class="settings-button settings-button--primary">
+                        Update Nickname
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="settings-item">
+            <div class="settings-item__header">
+                <h3 class="settings-item__title">Email</h3>
+                <span class="settings-item__value" id="currentEmail"><%= profile.email %></span>
+            </div>
+            <div class="settings-item__content">
+                <form class="settings-form" id="emailForm">
+                    <div class="settings-form-group">
+                        <input type="email" class="settings-form-control" id="emailInput"
+                               value="<%= profile.email %>" placeholder="Enter new email">
+                        <div class="settings-form-error" id="emailError"></div>
+                    </div>
+                    <button type="submit" class="settings-button settings-button--primary">
+                        Update Email
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="settings-item">
+            <div class="settings-item__header">
+                <h3 class="settings-item__title">Password</h3>
+                <span class="settings-item__value">••••••••</span>
+            </div>
+            <div class="settings-item__content">
+                <form class="settings-form" id="passwordForm">
+                    <div class="settings-form-group">
+                        <label class="settings-form-label">Current Password</label>
+                        <input type="password" class="settings-form-control" id="currentPassword"
+                               placeholder="Enter current password">
+                    </div>
+                    <div class="settings-form-group">
+                        <label class="settings-form-label">New Password</label>
+                        <input type="password" class="settings-form-control" id="newPassword"
+                               placeholder="Enter new password">
+                    </div>
+                    <div class="settings-form-group">
+                        <label class="settings-form-label">Confirm New Password</label>
+                        <input type="password" class="settings-form-control" id="confirmPassword"
+                               placeholder="Confirm new password">
+                        <div class="settings-form-error" id="passwordError"></div>
+                    </div>
+                    <button type="submit" class="settings-button settings-button--primary">
+                        Update Password
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="settings-section">
+    <div class="settings-section-container">
+        <h2 class="settings-section__title settings-section__title--danger">Danger Zone</h2>
+
+        <div class="settings-item settings-item--danger">
+            <div class="settings-item__header">
+                <h3 class="settings-item__title settings-item__title--danger">Delete Account</h3>
+            </div>
+            <div class="settings-item__content">
+                <p class="settings-danger__warning">
+                    Once you delete your account, there is no going back. Please be certain.
+                </p>
+                <button class="settings-button settings-button--danger" onclick="openDeleteModal()">
+                    Delete Account
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="deleteAccountModal" class="settings-modal">
+    <div class="settings-modal-content">
+        <span class="settings-modal-close" onclick="closeDeleteModal()">&times;</span>
+        <div class="settings-modal-header">
+            <h2 class="settings-modal-title settings-modal-title--danger">Delete Account</h2>
+        </div>
+        <form id="deleteAccountForm" class="settings-form">
+            <div class="settings-form-group">
+                <p class="settings-danger__instruction">
+                    To confirm, please type <strong>"yes, i know what i am doing"</strong> below:
+                </p>
+                <input type="text" class="settings-form-control" id="confirmationText"
+                       placeholder='Type "yes, i know what i am doing"'>
+                <div class="settings-form-error" id="confirmationError"></div>
+            </div>
+
+            <div class="settings-form-group">
+                <p class="settings-danger__instruction">
+                    Enter your nickname <strong>"<%= profile.nickname %>"</strong> to continue:
+                </p>
+                <input type="text" class="settings-form-control" id="confirmNickname"
+                       placeholder="Enter your nickname">
+                <div class="settings-form-error" id="nicknameConfirmError"></div>
+            </div>
+
+            <button type="submit" class="settings-button settings-button--danger" style="width: 100%;">
+                Delete Account Permanently
+            </button>
+        </form>
+    </div>
+</div>

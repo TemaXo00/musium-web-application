@@ -1,0 +1,100 @@
+<section class="profile-nickname">
+    <div class="profile-nickname-container" data-user-id="<%= profile.id %>">
+        <h1 class="profile-nickname__title"> <%= profile.nickname %></h1>
+        <div class="profile-nickname-card">
+            <div class="profile-nickname-avatar">
+                <img src="<%= profile.avatar_url %>" alt="<%= profile.nickname %>" class="profile-nickname-avatar__image">
+                <div class="profile-nickname-avatar__status"><%= profile.status %></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="profile-description">
+    <div class="profile-description-container">
+        <h1 class="profile-description__title">Description</h1>
+        <div class="profile-description-card">
+            <p class="profile-description__content"><%= profile.description %></p>
+        </div>
+    </div>
+</section>
+
+<section class="profile-information">
+    <div class="profile-information-container">
+        <h1 class="profile-information__title">Information</h1>
+        <div class="profile-information-card">
+            <div class="profile-information-list">
+                <div class="profile-information-item">
+                    <span class="profile-information-label">ID:</span>
+                    <span class="profile-information-value"><%= profile.id %></span>
+                </div>
+                <div class="profile-information-item">
+                    <span class="profile-information-label">Email:</span>
+                    <span class="profile-information-value"><%= profile.email %></span>
+                </div>
+                <div class="profile-information-item">
+                    <span class="profile-information-label">Gender:</span>
+                    <span class="profile-information-value"><%= profile.gender %></span>
+                </div>
+                <div class="profile-information-item">
+                    <span class="profile-information-label">Joined:</span>
+                    <span class="profile-information-value"><%= profile.formatted_created_at %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<% if (user && (user.id === profile.id || user.type === 'Admin')) { %>
+    <section class="profile-actions">
+        <div class="profile-actions-container">
+            <h1 class="profile-actions__title">Actions</h1>
+            <div class="profile-actions-card">
+                <div class="profile-actions-buttons">
+                    <% if (user.id === profile.id) { %>
+                        <button class="profile-actions-button profile-actions-button--primary" onclick="openEditModal()">
+                            Edit Profile
+                        </button>
+                    <% } %>
+                        <a href="/profile/<%= profile.id %>/history" class="profile-actions-button profile-actions-button--secondary">
+                            View History
+                        </a>
+                </div>
+            </div>
+        </div>
+    </section>
+<% } %>
+
+<div id="editProfileModal" class="profile-modal">
+    <div class="profile-modal-content">
+        <span class="profile-modal-close" onclick="closeEditModal()">&times;</span>
+        <div class="profile-modal-header">
+            <h2 class="profile-modal-title">Edit Profile</h2>
+        </div>
+        <form id="editProfileForm" class="profile-form">
+            <div class="profile-form-group">
+                <label class="profile-form-label" for="editGender">Gender</label>
+                <select class="profile-form-select" id="editGender" name="gender">
+                    <option value="N/A" <%= profile.gender === 'N/A' ? 'selected' : '' %>>Not specified</option>
+                    <option value="Male" <%= profile.gender === 'Male' ? 'selected' : '' %>>Male</option>
+                    <option value="Female" <%= profile.gender === 'Female' ? 'selected' : '' %>>Female</option>
+                    <option value="Other" <%= profile.gender === 'Other' ? 'selected' : '' %>>Other</option>
+                </select>
+            </div>
+
+            <div class="profile-form-group">
+                <label class="profile-form-label" for="editDescription">Description</label>
+                <textarea class="profile-form-textarea" id="editDescription" name="description" rows="4" placeholder="Tell us about yourself..."><%= profile.description %></textarea>
+            </div>
+
+            <div class="profile-form-group">
+                <label class="profile-form-label" for="editAvatar">Avatar URL</label>
+                <input type="url" class="profile-form-control" id="editAvatar" name="avatar_url" value="<%= profile.avatar_url %>" placeholder="https://example.com/avatar.jpg">
+            </div>
+
+            <button type="submit" class="profile-actions-button profile-actions-button--primary" style="width: 100%;">
+                Save Changes
+            </button>
+        </form>
+    </div>
+</div>

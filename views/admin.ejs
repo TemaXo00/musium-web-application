@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <title>Musium - <%= title %> </title>
+</head>
+<body>
+<header>
+    <%- include('partials/header') %>
+</header>
+
+<main id="content-container">
+    <%- include('pages/admin') %>
+</main>
+
+<footer>
+    <%- include('partials/footer') %>
+</footer>
+
+<script src="/scripts/modal-manager.js"></script>
+<script src="/scripts/navigation-handler.js"></script>
+<script src="/scripts/user-menu.js"></script>
+<script src="/scripts/admin-panel.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <title>Musium - <%= title %> </title>
+</head>
+<body>
+<header>
+    <%- include('../partials/header') %>
+</header>
+
+<main id="content-container">
+    <section class="auth">
+        <div class="auth-container">
+            <div class="auth-content">
+                <div class="auth-header">
+                    <h1 class="auth-title">Welcome Back</h1>
+                    <p class="auth-subtitle">Sign in to your account</p>
+                </div>
+
+                <form class="auth-form login-form">
+                    <div class="auth-input-group">
+                        <input
+                                type="email"
+                                placeholder="Email Address"
+                                class="auth-input"
+                                required
+                        >
+                    </div>
+
+                    <div class="auth-input-group">
+                        <input
+                                type="password"
+                                placeholder="Password"
+                                class="auth-input"
+                                required
+                        >
+                    </div>
+
+                    <button type="submit" class="auth-button">
+                        <span class="auth-button-text">Sign In</span>
+                    </button>
+                </form>
+
+                <div class="auth-footer">
+                    <p class="auth-footer-text">
+                        Don't have an account?
+                        <a href="/auth/register" class="auth-footer-link">Sign up</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <%- include('../partials/footer') %>
+</footer>
+
+<script src="/scripts/navigation-handler.js"></script>
+<script src="/scripts/auth-handler.js"></script>
+
+</body>
+</html>

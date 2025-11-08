@@ -1,0 +1,128 @@
+<section class="author-panel">
+    <div class="author-panel-container">
+        <h1 class="author-panel__title">Author Panel</h1>
+
+        <div class="author-panel-actions">
+            <button class="author-panel-button author-panel-button--primary" onclick="authorPanel.showCreateModal()">
+                Create New Entity
+            </button>
+        </div>
+
+        <div class="author-panel-tabs">
+            <button class="author-panel-tab active" data-tab="tracks" data-status="all">
+                All Tracks
+            </button>
+            <button class="author-panel-tab" data-tab="albums" data-status="all">
+                All Albums
+            </button>
+            <button class="author-panel-tab" data-tab="eps" data-status="all">
+                All EP's
+            </button>
+            <button class="author-panel-tab" data-tab="pending" data-status="pending">
+                Pending
+            </button>
+            <button class="author-panel-tab" data-tab="approved" data-status="approved">
+                Approved
+            </button>
+            <button class="author-panel-tab" data-tab="declined" data-status="declined">
+                Declined
+            </button>
+            <button class="author-panel-tab" data-tab="removed" data-status="removed">
+                Deleted
+            </button>
+        </div>
+
+        <div class="author-panel-content">
+            <div class="author-panel-section">
+                <div class="author-panel-section__header">
+                    <h2 class="author-panel-section__title">
+                        My Content
+                        <span class="author-panel-section__count" id="entities-count"></span>
+                    </h2>
+                </div>
+                <div class="author-panel-items" id="entities-list">
+                    <div class="author-panel-loading">
+                        <div class="author-panel-loading__message">Loading content...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal для создания/редактирования -->
+<div id="entityModal" class="author-modal">
+    <div class="author-modal-content">
+        <span class="author-modal-close" onclick="authorPanel.closeModal()">&times;</span>
+        <div class="author-modal-header">
+            <h2 class="author-modal-title" id="modal-title">Create New Entity</h2>
+        </div>
+        <form id="entityForm" class="author-form">
+            <input type="hidden" id="entityId">
+            <div class="author-form-group">
+                <label class="author-form-label" for="entityType">Type</label>
+                <select class="author-form-select" id="entityType" name="type" required>
+                    <option value="">Select type</option>
+                    <option value="Song">Song</option>
+                    <option value="Album">Album</option>
+                    <option value="EP">EP</option>
+                </select>
+            </div>
+
+            <div class="author-form-group">
+                <label class="author-form-label" for="entityName">Name</label>
+                <input type="text" class="author-form-control" id="entityName" name="name" required placeholder="Enter name">
+            </div>
+
+            <div class="author-form-group">
+                <label class="author-form-label" for="entityDescription">Description</label>
+                <textarea class="author-form-textarea" id="entityDescription" name="description" rows="4" placeholder="Enter description"></textarea>
+            </div>
+
+            <div class="author-form-group">
+                <label class="author-form-label" for="entityAvatar">Avatar URL</label>
+                <input type="url" class="author-form-control" id="entityAvatar" name="avatar_url" required placeholder="https://example.com/avatar.jpg">
+            </div>
+
+            <div class="author-form-group">
+                <label class="author-form-label" for="entityUrl">Entity URL</label>
+                <input type="url" class="author-form-control" id="entityUrl" name="entity_url" required placeholder="https://example.com/entity">
+            </div>
+
+            <div class="author-form-group">
+                <label class="author-form-label" for="entityGenre">Genre</label>
+                <select class="author-form-select" id="entityGenre" name="genre_id" required>
+                    <option value="">Select genre</option>
+                </select>
+            </div>
+
+            <div id="tracksSection" class="author-form-group" style="display: none;">
+                <label class="author-form-label">Tracks</label>
+                <div id="tracksContainer">
+                </div>
+                <button type="button" class="author-panel-button author-panel-button--secondary" onclick="authorPanel.addTrack()">
+                    Add Track
+                </button>
+            </div>
+
+            <button type="submit" class="author-panel-button author-panel-button--primary" style="width: 100%;">
+                Save
+            </button>
+        </form>
+    </div>
+</div>
+
+<div id="confirmModal" class="author-modal">
+    <div class="author-modal-content">
+        <div class="author-modal-header">
+            <h2 class="author-modal-title">Confirm Action</h2>
+        </div>
+        <div class="author-modal-body">
+            <p id="confirmMessage">Are you sure you want to perform this action?</p>
+        </div>
+        <div class="author-modal-actions">
+            <button class="author-panel-button author-panel-button--secondary" onclick="authorPanel.closeConfirmModal()">Cancel</button>
+            <button class="author-panel-button author-panel-button--danger" id="confirmAction">Confirm</button>
+        </div>
+    </div>
+</div>

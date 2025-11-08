@@ -1,0 +1,124 @@
+<section class="released">
+    <div class="released-container">
+        <h1 class="released-container__title">Just Released</h1>
+        <div class="released-container__card">
+            <% if (releases && releases.length > 0) { %>
+                <% releases.forEach((release, i) => { %>
+                    <div class="released-item">
+                        <div class="released-item__image">
+                            <img src="<%= release.avatar_url || '/images/test-avatar.jpeg' %>" alt="<%= release.name %>" class="released-item__img">
+                        </div>
+                        <div class="released-item__track">
+                            <p class="released-item__track-name"><%= release.name %></p>
+                            <p class="released-item__genre"><%= release.genre_name %></p>
+                        </div>
+                        <div class="released-item__artist">
+                            <p class="released-item__artist-name"><%= release.author_name %></p>
+                            <p class="released-item__date"><%= formatDate(release.created_at) %></p>
+                        </div>
+                        <div class="released-item__buttons">
+                            <a href="/entity/<%= release.id %>" target="_blank" class="released-item__buttons-play">
+                                <img src="/images/button-play.png" alt="Play">
+                            </a>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="no-data">No new releases available</p>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<section class="singles">
+    <div class="singles-container">
+        <h1 class="singles-container__title">New Singles</h1>
+        <div class="singles-container__card">
+            <% if (songs && songs.length > 0) { %>
+                <% songs.slice(0, 5).forEach((song, i) => { %>
+                    <div class="singles-item">
+                        <div class="singles-item__image">
+                            <img src="<%= song.avatar_url || '/images/test-label.png' %>" alt="<%= song.name %>" class="singles-item__img">
+                        </div>
+                        <div class="singles-item__track">
+                            <p class="singles-item__track-name"><%= song.name %></p>
+                            <p class="singles-item__genre"><%= song.genre_name %></p>
+                        </div>
+                        <div class="singles-item__artist">
+                            <p class="singles-item__artist-name"><%= song.author_name %></p>
+                        </div>
+                        <div class="singles-item__buttons">
+                            <a href="/entity/<%= song.id %>" target="_blank" class="singles-item__buttons-play">
+                                <img src="/images/button-play.png" alt="Play">
+                            </a>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="no-data">No singles available</p>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<section class="ep">
+    <div class="ep-container">
+        <h1 class="ep-container__title">New EP's</h1>
+        <div class="ep-container__card">
+            <% if (eps && eps.length > 0) { %>
+                <% eps.forEach((epItem, i) => { %>
+                    <div class="ep-item">
+                        <div class="ep-item__image">
+                            <img src="<%= epItem.avatar_url || '/images/test-label.png' %>" alt="<%= epItem.name %>" class="ep-item__img">
+                        </div>
+                        <div class="ep-item__track">
+                            <p class="ep-item__track-name"><%= epItem.name %></p>
+                            <p class="ep-item__genre"><%= epItem.genre_name %></p>
+                        </div>
+                        <div class="ep-item__artist">
+                            <p class="ep-item__artist-name"><%= epItem.author_name %></p>
+                        </div>
+                        <div class="ep-item__buttons">
+                            <a href="/entity/<%= epItem.id %>" target="_blank" class="ep-item__buttons-play">
+                                <img src="/images/button-play.png" alt="Play">
+                            </a>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="no-data">No EPs available</p>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<section class="albums">
+    <div class="albums-container">
+        <h1 class="albums-container__title">New Albums</h1>
+        <div class="albums-container__card">
+            <% if (albums && albums.length > 0) { %>
+                <% albums.forEach((album, i) => { %>
+                    <div class="albums-item">
+                        <div class="albums-item__image">
+                            <img src="<%= album.avatar_url || '/images/test-label.png' %>" alt="<%= album.name %>" class="albums-item__img">
+                        </div>
+                        <div class="albums-item__track">
+                            <p class="albums-item__track-name"><%= album.name %></p>
+                            <p class="albums-item__genre"><%= album.genre_name %></p>
+                        </div>
+                        <div class="albums-item__artist">
+                            <p class="albums-item__artist-name"><%= album.author_name %></p>
+                        </div>
+                        <div class="albums-item__buttons">
+                            <a href="/entity/<%= album.id %>" target="_blank" class="albums-item__buttons-play">
+                                <img src="/images/button-play.png" alt="Play">
+                            </a>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="no-data">No albums available</p>
+            <% } %>
+        </div>
+    </div>
+</section>

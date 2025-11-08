@@ -1,0 +1,108 @@
+<section class="admin">
+    <div class="admin-container">
+        <h1 class="admin__title">Admin Panel</h1>
+
+        <div class="admin-tabs">
+            <button class="admin-tab active" data-tab="tracks">
+                Tracks
+            </button>
+            <button class="admin-tab" data-tab="albums">
+                Albums
+            </button>
+            <button class="admin-tab" data-tab="eps">
+                EP's
+            </button>
+            <button class="admin-tab" data-tab="users">
+                Users
+            </button>
+        </div>
+
+        <div class="admin-content">
+            <div class="admin-tab-content active" id="tracks-tab">
+                <div class="admin-section">
+                    <div class="admin-section__header">
+                        <h2 class="admin-section__title">
+                            Pending Tracks
+                            <span class="admin-section__count" id="tracks-count"></span>
+                        </h2>
+                    </div>
+                    <div class="admin-items" id="tracks-list">
+                        <div class="admin-loading">
+                            <div class="admin-loading__message">Loading tracks...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-tab-content" id="albums-tab">
+                <div class="admin-section">
+                    <div class="admin-section__header">
+                        <h2 class="admin-section__title">
+                            Pending Albums
+                            <span class="admin-section__count" id="albums-count"></span>
+                        </h2>
+                    </div>
+                    <div class="admin-items" id="albums-list">
+                        <div class="admin-loading">
+                            <div class="admin-loading__message">Loading albums...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-tab-content" id="eps-tab">
+                <div class="admin-section">
+                    <div class="admin-section__header">
+                        <h2 class="admin-section__title">
+                            Pending EP's
+                            <span class="admin-section__count" id="eps-count"></span>
+                        </h2>
+                    </div>
+                    <div class="admin-items" id="eps-list">
+                        <div class="admin-loading">
+                            <div class="admin-loading__message">Loading EP's...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-tab-content" id="users-tab">
+                <div class="admin-section">
+                    <div class="admin-section__header">
+                        <h2 class="admin-section__title">
+                            Users Management
+                            <span class="admin-section__count" id="users-count"></span>
+                        </h2>
+                        <div class="admin-search">
+                            <input type="text" id="user-search" placeholder="Search by nickname..." class="admin-search__input">
+                            <button id="search-btn" class="admin-search__button">Search</button>
+                        </div>
+                    </div>
+                    <div class="admin-items" id="users-list">
+                        <div class="admin-loading">
+                            <div class="admin-loading__message">Loading users...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="rejectModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <div class="modal-header">
+            <h3 class="modal-title">Reject Content</h3>
+        </div>
+        <form id="rejectForm">
+            <input type="hidden" id="rejectType">
+            <input type="hidden" id="rejectId">
+            <div class="form-group">
+                <label for="rejectReason" class="form-label">Reason for rejection:</label>
+                <textarea id="rejectReason" class="form-control" rows="4" placeholder="Optional reason for rejection"></textarea>
+            </div>
+            <button type="submit" class="btn btn-danger">Reject</button>
+        </form>
+    </div>
+</div>

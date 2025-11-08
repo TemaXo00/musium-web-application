@@ -1,0 +1,80 @@
+<div class="header__container">
+    <div class="header__logo-section">
+        <div class="header__logo-image">
+            <img src="images/logo.png" alt="Logo" class="header__logo-img" data-href="/">
+        </div>
+        <div class="header__logo-text">
+            <p class="header__title">Musium</p>
+        </div>
+    </div>
+
+    <div class="header__desc">
+        <div class="header__desc-text">
+            <p class="header__subtitle">Musical museum</p>
+        </div>
+    </div>
+
+    <% if (typeof user !== 'undefined' && user) { %>
+        <div class="header__user">
+            <div class="header__user-greeting">
+                <p class="header__greeting-text">Hello, <span class="header__user-name"><%= user.nickname %></span></p>
+            </div>
+            <div class="header__user-avatar" id="userAvatar">
+                <img src="<%= user.avatar_url %>" alt="user profile" class="header__avatar-img">
+            </div>
+
+            <nav class="header__user-menu" id="profileMenu">
+                <ul class="header__menu-list">
+                    <li class="header__menu-item">
+                        <button class="header__menu-button" data-href="/profile">
+                            <span class="header__button-text">Profile</span>
+                            <img src="images/dropdown-user.png" alt="Profile" class="header__button-icon">
+                        </button>
+                    </li>
+
+                    <li class="header__menu-item">
+                        <button class="header__menu-button" data-href="/settings">
+                            <span class="header__button-text">Settings</span>
+                            <img src="images/dropdown-settings.png" alt="Settings" class="header__button-icon">
+                        </button>
+                    </li>
+
+                    <% if (user && user.type==='Admin') { %>
+                        <li class="header__menu-item">
+                            <button class="header__menu-button" data-href="/admin">
+                                <span class="header__button-text">Admin panel</span>
+                                <img src="images/dropdown-admin.png" alt="Profile" class="header__button-icon">
+                            </button>
+                        </li>
+                    <% } %>
+
+                    <% if (user && user.type==='Author') { %>
+                        <li class="header__menu-item">
+                            <button class="header__menu-button" data-href="/author">
+                                <span class="header__button-text">Author panel</span>
+                                <img src="images/dropdown-author.png" alt="Profile" class="header__button-icon">
+                            </button>
+                        </li>
+                    <% } %>
+
+                    <li class="header__menu-item">
+                        <button class="header__menu-button header__menu-button--logout" id="logoutButton">
+                            <span class="header__button-text">Logout</span>
+                            <img src="images/dropdown-logout.png" alt="Logout" class="header__button-icon">
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    <% } else { %>
+        <div class="header__auth">
+            <button class="header__auth-button" data-href="/auth/register">
+                <span class="header__auth-text">Register</span>
+            </button>
+            <span class="header__auth-separator">/</span>
+            <button class="header__auth-button" data-href="/auth/login">
+                <span class="header__auth-text">Login</span>
+            </button>
+        </div>
+    <% } %>
+</div>

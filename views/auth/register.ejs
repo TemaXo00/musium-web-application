@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <title>Musium - <%= title %> </title>
+</head>
+<body>
+<header>
+    <%- include('../partials/header') %>
+</header>
+
+<main id="content-container">
+    <section class="auth">
+        <div class="auth-container">
+            <div class="auth-content">
+                <div class="auth-header">
+                    <h1 class="auth-title">Join Musium</h1>
+                    <p class="auth-subtitle">Create your account</p>
+                </div>
+
+                <div class="register-type">
+                    <div class="register-type__buttons">
+                        <button class="register-type__button active" type="button">
+                            <span class="register-type__button-text">User</span>
+                        </button>
+                        <button class="register-type__button" type="button">
+                            <span class="register-type__button-text">Author</span>
+                        </button>
+                    </div>
+                </div>
+
+                <form class="auth-form register-form">
+                    <div class="auth-input-group">
+                        <input
+                                type="text"
+                                placeholder="Nickname"
+                                class="auth-input"
+                                required
+                        >
+                    </div>
+
+                    <div class="auth-input-group">
+                        <input
+                                type="email"
+                                placeholder="Email Address"
+                                class="auth-input"
+                                required
+                        >
+                    </div>
+
+                    <div class="auth-input-group">
+                        <input
+                                type="password"
+                                placeholder="Password"
+                                class="auth-input"
+                                required
+                                minlength="6"
+                        >
+                    </div>
+
+                    <button type="submit" class="auth-button">
+                        <span class="auth-button-text">Create Account</span>
+                    </button>
+                </form>
+
+                <div class="auth-footer">
+                    <p class="auth-footer-text">
+                        Already have an account?
+                        <a href="/auth/login" class="auth-footer-link">Sign in</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <%- include('../partials/footer') %>
+</footer>
+
+<script src="/scripts/navigation-handler.js"></script>
+<script src="/scripts/auth-handler.js"></script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+.header {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: $div-background;
+    padding: 14px 20px;
+    position: relative;
+  }
+
+  &__logo {
+    &-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      user-select: none;
+      cursor: pointer;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: $accent-color;
+        transition: width 0.3s ease;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+
+    &-image {
+      width: 70px;
+      height: 70px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    &-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -webkit-user-drag: none;
+      transition: transform 0.3s ease;
+    }
+
+    &-text {
+      font-size: 32px;
+      font-family: $logo-font;
+      color: $accent-color;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 32px;
+    font-family: $logo-font;
+    color: $accent-color;
+  }
+
+  &__desc {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__desc-text {
+    text-align: center;
+    user-select: none;
+  }
+
+  &__subtitle {
+    font-size: 32px;
+    font-family: $logo-font;
+    color: $accent-color-darker;
+    margin: 0;
+  }
+
+  &__auth {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__auth-button {
+    padding: 12px 24px;
+    border-radius: 12px;
+    background-color: transparent;
+    font-family: $base-font;
+    border: 2px solid $accent-color;
+    font-size: 18px;
+    color: $accent-color;
+    transition: all 0.3s ease;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-family: $base-font;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba($accent-color, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    &:hover {
+      background-color: $accent-color;
+      color: white;
+      transform: translateY(-2px);
+
+      &::before {
+        left: 100%;
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &[data-href="/auth/login"] {
+      background-color: $accent-color;
+      color: white;
+      font-family: $base-font;
+
+      &:hover {
+        background-color: darken($accent-color, 10%);
+        border-color: darken($accent-color, 10%);
+      }
+    }
+
+    &[data-href="/auth/register"] {
+      background-color: transparent;
+      color: $accent-color;
+      font-family: $base-font;
+
+      &:hover {
+        background-color: $accent-color;
+        color: white;
+      }
+    }
+  }
+
+  &__auth-text {
+    font-size: 18px;
+    font-family: $base-font;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__auth-separator {
+    font-size: 18px;
+    color: $accent-color-darker;
+    user-select: none;
+    font-family: $base-font;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+  }
+
+  &__user-greeting {
+    text-align: right;
+    user-select: none;
+  }
+
+  &__greeting-text {
+    font-size: 32px;
+    font-family: $base-font;
+    color: $text-color;
+    margin: 0;
+  }
+
+  &__user-name {
+    font-family: $logo-font;
+    color: $accent-color;
+  }
+
+  &__user-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    border: 2px solid transparent;
+
+    &:hover {
+      transform: scale(1.05);
+      border-color: $accent-color;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  &__avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  &__user-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    background-color: $div-background;
+    border-radius: 12px;
+    padding: 16px;
+    border: 2px solid $accent-color;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    min-width: 220px;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+
+  &__menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__menu-item {
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateX(5px);
+    }
+  }
+
+  &__menu-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background-color: transparent;
+    font-family: $base-font;
+    font-size: 18px;
+    color: $text-color;
+    transition: all 0.3s ease;
+    user-select: none;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba($accent-color, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    &:hover {
+      background-color: rgba($accent-color, 0.1);
+      border-color: $accent-color;
+      color: $accent-color;
+
+      &::before {
+        left: 100%;
+      }
+    }
+
+    &--logout {
+      color: #ff4757;
+
+      &:hover {
+        background-color: rgba(#ff4757, 0.1);
+        border-color: #ff4757;
+        color: #ff4757;
+      }
+    }
+  }
+
+  &__button-text {
+    font-size: 18px;
+    font-family: $base-font;
+    color: inherit;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__button-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+  }
+}

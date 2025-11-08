@@ -1,0 +1,155 @@
+<section class="search">
+    <div class="search-container">
+        <h1 class="search__title">Search</h1>
+
+        <div class="search__form">
+            <form action="/content/search" method="GET" class="search-form" id="searchForm">
+                <div class="search-input-group">
+                    <label>
+                        <input
+                                type="text"
+                                name="q"
+                                value="<%= query %>"
+                                placeholder="Search for tracks, albums, artists..."
+                                class="search-input"
+                                autocomplete="off"
+                        >
+                    </label>
+                    <button type="submit" class="search-button">
+                        <img src="/images/button-search.png" alt="Search" class="search-icon">
+                    </button>
+                </div>
+
+                <div class="search-filters">
+                    <div class="filter-group">
+                        <label class="filter-label">Type:</label>
+                        <label>
+                            <select name="type" class="filter-select" onchange="this.form.submit()">
+                                <option value="all" <%= filters.type === 'all' ? 'selected' : '' %>>All Types</option>
+                                <option value="Song" <%= filters.type === 'Song' ? 'selected' : '' %>>Songs</option>
+                                <option value="Album" <%= filters.type === 'Album' ? 'selected' : '' %>>Albums</option>
+                                <option value="EP" <%= filters.type === 'EP' ? 'selected' : '' %>>EPs</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Genre:</label>
+                        <label>
+                            <select name="genre" class="filter-select" onchange="this.form.submit()">
+                                <option value="all" <%= filters.genre === 'all' ? 'selected' : '' %>>All Genres</option>
+                                <% genres.forEach(genre => { %>
+                                    <option value="<%= genre %>" <%= filters.genre === genre ? 'selected' : '' %>>
+                                        <%= genre %>
+                                    </option>
+                                <% }); %>
+                            </select>
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Sort by:</label>
+                        <label>
+                            <select name="sort" class="filter-select" onchange="this.form.submit()">
+                                <option value="relevance" <%= filters.sort === 'relevance' ? 'selected' : '' %>>Relevance</option>
+                                <option value="views" <%= filters.sort === 'views' ? 'selected' : '' %>>Most Views</option>
+                                <option value="newest" <%= filters.sort === 'newest' ? 'selected' : '' %>>Newest</option>
+                                <option value="oldest" <%= filters.sort === 'oldest' ? 'selected' : '' %>>Oldest</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <% if (query || filters.type !== 'all' || filters.genre !== 'all' || filters.sort !== 'relevance') { %>
+                        <a href="/content/search" class="filter-reset">Reset all</a>
+                    <% } %>
+                </div>
+            </form>
+        </div>
+
+        <% if (query) { %>
+            <div class="search-results">
+                <h2 class="search-results__title">
+                    Search results for "<%= query %>"
+                    <span class="search-results__count">(<%= results.length %> results)</span>
+                </h2>
+
+                <div class="active-filters">
+                    <span class="active-filters__label">Active filters:</span>
+                    <div class="active-filters__list">
+                        <% if (filters.type !== 'all') { %>
+                            <span class="active-filter">
+                        Type: <%= filters.type %>
+                        <a href="#" class="active-filter__remove" data-filter="type">×</a>
+                    </span>
+                        <% } %>
+                        <% if (filters.genre !== 'all') { %>
+                            <span class="active-filter">
+                        Genre: <%= filters.genre %>
+                        <a href="#" class="active-filter__remove" data-filter="genre">×</a>
+                    </span>
+                        <% } %>
+                        <% if (filters.sort !== 'relevance') { %>
+                            <span class="active-filter">
+                        Sort by: <%= filters.sort %>
+                        <a href="#" class="active-filter__remove" data-filter="sort">×</a>
+                    </span>
+                        <% } %>
+                    </div>
+                </div>
+
+                <% if (results.length > 0) { %>
+                    <div class="search-results__items">
+                        <% results.forEach((item, index) => { %>
+                            <div class="search-results__item">
+                                <div class="search-results__item-left">
+                                    <div class="search-results__item-image">
+                                        <img src="<%= item.avatar_url || '/images/test-label.png' %>" alt="<%= item.name %>" class="search-results__item-img">
+                                    </div>
+
+                                    <div class="search-results__item-info">
+                                        <div class="search-results__item-header">
+                                            <h3 class="search-results__item-name"><%= item.name %></h3>
+                                            <span class="search-results__item-type <%= item.type.toLowerCase() %>"><%= item.type %></span>
+                                        </div>
+
+                                        <p class="search-results__item-artist">
+                                            <strong>Artist:</strong> <%= item.author_name %>
+                                        </p>
+
+                                        <% if (item.genre_name) { %>
+                                            <p class="search-results__item-genre">
+                                                <strong>Genre:</strong> <%= item.genre_name %>
+                                            </p>
+                                        <% } %>
+
+                                        <div class="search-results__item-stats">
+                                            <span class="search-results__item-views"><%= item.views.toLocaleString() %> views</span>
+                                            <span class="search-results__item-date"><%= formatDate(item.created_at) %></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="search-results__item-right">
+                                    <div class="search-results__item-buttons">
+                                        <a href="/entity/<%= item.id %>" target="_blank" class="search-results__buttons-play">
+                                            <img src="/images/button-play.png" alt="Play">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } else { %>
+                    <div class="search-no-results">
+                        <p class="search-no-results__message">No results found for "<%= query %>"</p>
+                        <p class="search-no-results__suggestion">Try different keywords or check the spelling</p>
+                    </div>
+                <% } %>
+            </div>
+        <% } else { %>
+            <div class="search-empty">
+                <p class="search-empty__message">Enter search terms to find music</p>
+            </div>
+        <% } %>
+    </div>
+</section>
