@@ -2,6 +2,23 @@ class ContentLoader {
     constructor() {
         this.buttons = document.querySelectorAll('.hero__menu-button');
         this.contentContainer = document.getElementById('content-container');
+        this.loadingMessages = [
+            "Loading fresh tracks...",
+            "Discovering new albums...",
+            "Updating collections...",
+            "Preparing content...",
+            "Loading music releases...",
+            "Gathering best releases...",
+            "Updating library...",
+            "Finding trending songs..."
+        ];
+        this.subMessages = [
+            "This will take just a few seconds",
+            "Music is on its way",
+            "Almost ready...",
+            "Enjoy high-quality sound",
+            "One moment, magic is happening"
+        ];
         this.init();
     }
 
@@ -31,10 +48,29 @@ class ContentLoader {
         }
     }
 
-    loadContent(page) {
-        this.contentContainer.innerHTML = '<div class="loading">Loading...</div>';
+    getRandomMessage() {
+        return this.loadingMessages[Math.floor(Math.random() * this.loadingMessages.length)];
+    }
 
-        fetch(`/content/${page}/`)
+    getRandomSubMessage() {
+        return this.subMessages[Math.floor(Math.random() * this.subMessages.length)];
+    }
+
+    loadContent(page) {
+        const randomMessage = this.getRandomMessage();
+        const randomSubMessage = this.getRandomSubMessage();
+
+        this.contentContainer.innerHTML = `
+            <div class="loading">
+                <div class="loading-content">
+                    <div class="loading-message">${randomMessage}</div>
+                    <div class="loading-submessage">${randomSubMessage}</div>
+                </div>
+            </div>
+        `;
+
+        const timestamp = new Date().getTime();
+        fetch(`/content/${page}/?t=${timestamp}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -48,8 +84,8 @@ class ContentLoader {
             .catch(error => {
                 this.contentContainer.innerHTML = `
                     <div class="error">
-                        <p>Error loading content</p>
-                        <button onclick="location.reload()">Update page</button>
+                        <div class="error-message">Error loading content: ${error.message}</div>
+                        <button class="error-button" onclick="location.reload()">Reload page</button>
                     </div>
                 `;
             });

@@ -2303,6 +2303,87 @@ body {
   animation: fadeInUp 0.8s ease 0.4s forwards;
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  padding: 60px 20px;
+  background-color: #595959;
+  border-radius: 16px;
+  margin: 20px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.6s forwards;
+}
+.loading-content {
+  text-align: center;
+}
+.loading-message {
+  font-size: 24px;
+  color: #DDB892;
+  font-family: "SourceSans", sans-serif;
+  margin: 0 0 16px 0;
+  font-weight: 600;
+}
+.loading-submessage {
+  font-size: 16px;
+  color: white;
+  font-family: "SourceSans", sans-serif;
+  margin: 0;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  padding: 60px 20px;
+  background-color: #595959;
+  border-radius: 16px;
+  margin: 20px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.6s forwards;
+  text-align: center;
+  border: 2px solid rgba(239, 68, 68, 0.1);
+}
+.error-message {
+  font-size: 20px;
+  color: #DDB892;
+  font-family: "SourceSans", sans-serif;
+  margin: 0 0 20px 0;
+  font-weight: 600;
+}
+.error-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background-color: #DDB892;
+  color: white;
+  font-family: "SourceSans", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+.error-button:hover {
+  background-color: #DDB892;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .error__container {
   min-height: 70vh;
   display: flex;
