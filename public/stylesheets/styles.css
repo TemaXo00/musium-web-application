@@ -97,16 +97,11 @@ body {
   font-weight: bold;
   color: #DDB892;
 }
-.footer__app-desc {
-  font-size: 48px;
-  font-family: "Lora", serif;
-  color: #B29C86;
-  margin: 0;
-}
 .footer__copyright-item {
   font-size: 32px;
   font-family: "SourceSans", sans-serif;
   color: #DDB892;
+  text-decoration: none;
   margin: 0;
   text-align: right;
   position: relative;
@@ -190,14 +185,6 @@ body {
   font-size: 32px;
   font-family: "Lora", serif;
   color: #DDB892;
-}
-.header__desc {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .header__desc-text {
   text-align: center;
@@ -2545,13 +2532,19 @@ body {
   opacity: 0;
   animation: fadeInUp 0.8s ease 0.35s forwards;
 }
+.register-type__text {
+  color: #B29C86;
+  margin: 20px 0;
+  font-family: "SourceSans", sans-serif;
+  font-size: 20px;
+}
 .register-type__buttons {
   display: flex;
-  gap: 12px;
+  gap: 30px;
   justify-content: center;
 }
 .register-type__button {
-  padding: 12px 24px;
+  padding: 12px 30px;
   border: 2px solid #D9D9D9;
   border-radius: 8px;
   background-color: transparent;
@@ -2563,22 +2556,9 @@ body {
   position: relative;
   overflow: hidden;
 }
-.register-type__button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(221, 184, 146, 0.1), transparent);
-  transition: left 0.5s ease;
-}
 .register-type__button:hover {
   border-color: #DDB892;
   color: #DDB892;
-}
-.register-type__button:hover::before {
-  left: 100%;
 }
 .register-type__button.active {
   background-color: #DDB892;
@@ -2611,7 +2591,7 @@ body {
 }
 .auth-content {
   background-color: #595959;
-  padding: 60px 40px;
+  padding: 60px 60px;
   border-radius: 16px;
   max-width: 480px;
   width: 100%;
@@ -2650,7 +2630,7 @@ body {
   width: 100%;
   padding: 16px 20px;
   font-size: 18px;
-  border: 2px solid #D9D9D9;
+  border: 2px solid #DDB892;
   border-radius: 12px;
   background-color: rgb(83.9, 83.9, 83.9);
   color: #F2F2F2;
@@ -2665,7 +2645,7 @@ body {
   background-color: rgb(86.45, 86.45, 86.45);
 }
 .auth-input::placeholder {
-  color: white;
+  color: rgb(165.5, 165.5, 165.5);
 }
 .auth-button {
   width: 100%;
@@ -2690,14 +2670,11 @@ body {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.5s;
+  transition: 0.5s;
 }
 .auth-button:hover {
   background-color: #B29C86;
   transform: translateY(-2px);
-}
-.auth-button:hover::before {
-  left: 100%;
 }
 .auth-button:disabled {
   background-color: rgb(245.2517482517, 234.6433566434, 223.7482517483);
