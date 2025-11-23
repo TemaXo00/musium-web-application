@@ -70,15 +70,6 @@
     color: $accent-color;
   }
 
-  &__desc {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   &__desc-text {
     text-align: center;
     user-select: none;

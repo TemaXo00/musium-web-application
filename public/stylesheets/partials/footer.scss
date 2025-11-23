@@ -84,13 +84,6 @@
       font-weight: bold;
       color: $accent-color;
     }
-
-    &-desc {
-      font-size: 48px;
-      font-family: $logo-font;
-      color: $accent-color-darker;
-      margin: 0;
-    }
   }
 
   &__copyright {
@@ -98,6 +91,7 @@
       font-size: 32px;
       font-family: $base-font;
       color: $accent-color;
+      text-decoration: none;
       margin: 0;
       text-align: right;
       position: relative;
