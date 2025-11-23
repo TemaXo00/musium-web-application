@@ -105,7 +105,7 @@ musium/
     - **General Tab:**
         - Name: `Musium`
     - **Connection Tab:**
-        - Host: `host.docker.internal`
+        - Host: `Name from docker-compose.yml (basically, db)`
         - Port: `5432`
         - Maintenance Database: `[DB_NAME from .env]`
         - Username: `[DB_USER from .env]`
