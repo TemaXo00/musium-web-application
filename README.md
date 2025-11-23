@@ -1,23 +1,8 @@
 # Musium
 
-## Author Information
-
-- **Created by:** Melnikov Artem Alexandrovich
-- **University:** MITSO (International University "MITSO")
-- **Course:** 2nd Year, 3th Semester
-- **Group:** 2421
-- **Specialty:** Information Systems and Technologies (ISIT)
-- **Discipline:** Object-oriented programming and design
-- **Date:** 08.11.2025
-
 ## Project Overview
 
 Musium is a comprehensive music platform developed as part of the **2nd year Object-oriented Programming and Design curriculum**. This project represents a culmination of skills acquired throughout the course, demonstrating practical implementation of OOP principles in a full-stack web application.
-
-### Academic Context
-- **Course Level:** Undergraduate, Year 2
-- **Project Type:** Course Project (Semester 3)
-- **Focus Areas:** OOP Principles, Design Patterns, Full-Stack Development
 
 ### Key Features
 - Music catalog with trending and new releases
@@ -190,6 +175,3 @@ npm run dev
 - [Icons8](https://icons8.ru/) - Icons and graphics
 - [Google Fonts](https://fonts.google.com/) - Typography
 - [Spotify](https://open.spotify.com/) - Design inspiration
-
-## License
-This project is developed for educational purposes as part of the **2nd year MITSO ISIT curriculum**. Not intended for commercial use.
