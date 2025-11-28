@@ -1,6 +1,10 @@
 @mixin sections-settings() {
   $section-name: &;
 
+  & {
+    margin: 20px;
+  }
+
   &-container {
     margin: 20px;
     opacity: 0;
@@ -37,10 +41,6 @@
   &-container {
     margin: 20px;
     animation-delay: 0.1s;
-  }
-
-  &__title {
-    @extend .settings-profile-container__title;
   }
 
   &-card {
@@ -107,7 +107,7 @@
 
   &__title {
     @extend .settings-section-container__title;
-    font-size: 36px;
+    font-size: 54px;
     margin-bottom: 30px;
 
     &--danger {

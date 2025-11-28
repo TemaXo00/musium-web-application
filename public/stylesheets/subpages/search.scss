@@ -1,6 +1,9 @@
 @mixin sections-search {
   $section-name: &;
 
+  & {
+    margin: 20px;
+  }
   &-container {
     margin: 20px;
     opacity: 0;
@@ -13,8 +16,8 @@
     font-family: $logo-font;
     user-select: none;
     opacity: 0;
+    margin: 40px 0;
     animation: fadeInUp 0.8s ease 0.2s forwards;
-    margin: 30px 0;
   }
 
   &__form {

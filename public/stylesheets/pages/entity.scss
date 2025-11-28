@@ -1,6 +1,10 @@
 @mixin sections-entity() {
   $section-name: &;
 
+  & {
+    margin: 20px;
+  }
+
   &-container {
     margin: 20px;
     opacity: 0;

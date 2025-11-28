@@ -1,8 +1,10 @@
 @mixin sections-new() {
   $section-name: &;
 
-  &-container {
+  & {
     margin: 20px;
+  }
+  &-container {
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
 
@@ -13,7 +15,7 @@
       user-select: none;
       opacity: 0;
       animation: fadeInUp 0.8s ease 0.2s forwards;
-      margin: 30px 0;
+      margin: 20px;
     }
 
     &__card {
