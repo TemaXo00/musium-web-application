@@ -1,29 +1,51 @@
 .search-field {
-  margin: 20px auto;
-  max-width: 680px;
+  margin: 30px auto;
+  max-width: 800px;
   width: 100%;
-  border-radius: 12px;
+  border-radius: 16px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, $accent-color, $accent-color-darker);
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:focus-within::before {
+    opacity: 0.3;
+  }
 
   &__form {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
+    position: relative;
   }
 
   &__input-group {
     display: flex;
     align-items: center;
     background: $div-background;
-    border: 2px solid $button-color;
-    border-radius: 12px;
-    padding: 8px 16px;
-    transition: all 0.3s ease;
+    border: 2px solid $border-color;
+    border-radius: 14px;
+    padding: 4px 20px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
-    height: 40px;
+    height: 56px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 
     &:focus-within {
       border-color: $accent-color;
       transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba($accent-color, 0.2);
     }
   }
 
@@ -33,6 +55,21 @@
     width: 100%;
     height: 100%;
     cursor: text;
+    gap: 12px;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+    color: $accent-color;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    flex-shrink: 0;
+
+    .search-field__input-group:focus-within & {
+      opacity: 1;
+      transform: scale(1.1);
+    }
   }
 
   &__input {
@@ -41,13 +78,117 @@
     outline: none;
     color: $text-color;
     font-family: $base-font;
-    font-size: 16px;
+    font-size: 17px;
     width: 100%;
     height: 100%;
+    font-weight: 400;
 
     &::placeholder {
-      color: lighten($text-color, 30%);
+      color: lighten($text-color, 40%);
       font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    &:focus::placeholder {
+      color: lighten($text-color, 60%);
+    }
+  }
+
+  &__button {
+    padding: 0 28px;
+    height: 56px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, $accent-color, $accent-color-darker);
+    color: white;
+    font-family: $base-font;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 15px rgba($accent-color, 0.3);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba($accent-color, 0.4);
+      background: linear-gradient(135deg, $accent-color-darker, darken($accent-color-darker, 5%));
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 15px rgba($accent-color, 0.3);
+    }
+
+    &-icon {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin: 20px auto;
+    max-width: 600px;
+
+    &__form {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    &__input-group {
+      height: 52px;
+      padding: 4px 16px;
+    }
+
+    &__button {
+      width: 100%;
+      justify-content: center;
+      height: 52px;
+      padding: 0 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    margin: 15px auto;
+
+    &__input-group {
+      height: 48px;
+      padding: 4px 14px;
+      border-radius: 12px;
+    }
+
+    &__input {
+      font-size: 15px;
+    }
+
+    &__button {
+      height: 48px;
+      font-size: 15px;
+      border-radius: 12px;
+    }
+
+    &__icon {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    &__input {
+      font-size: 14px;
+    }
+
+    &__input::placeholder {
+      font-size: 14px;
+    }
+
+    &__button {
+      font-size: 14px;
+      padding: 0 16px;
     }
   }
 }

@@ -2,22 +2,26 @@
   $section-name: &;
 
   &-container {
-    margin: 20px;
+    margin: 30px auto;
+    max-width: 1400px;
+    padding: 0 20px;
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 60vh;
+    min-height: 70vh;
   }
 
   &-content {
     background-color: $div-background;
-    padding: 60px 60px;
-    border-radius: 16px;
-    max-width: 480px;
+    padding: 50px 50px;
+    border-radius: 24px;
+    max-width: 500px;
     width: 100%;
     text-align: center;
+    border: 1px solid $border-color;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   }
 
   &-header {
@@ -25,23 +29,25 @@
   }
 
   &-title {
-    font-size: 54px;
+    font-size: 48px;
     color: $accent-color;
     font-family: $logo-font;
     margin: 0 0 12px 0;
     user-select: none;
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.2s forwards;
+    font-weight: 600;
+    letter-spacing: -0.5px;
   }
 
   &-subtitle {
-    font-size: 32px;
-    color: $text-color;
+    font-size: 20px;
+    color: lighten($text-color, 20%);
     font-family: $base-font;
     margin: 0;
-    opacity: 0.8;
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.3s forwards;
+    line-height: 1.5;
   }
 
   &-form {
@@ -52,91 +58,128 @@
 
   &-input-group {
     margin-bottom: 20px;
+    position: relative;
   }
 
   &-input {
     width: 100%;
     padding: 16px 20px;
-    font-size: 18px;
-    border: 2px solid $accent-color;
+    font-size: 16px;
+    border: 2px solid $border-color;
     border-radius: 12px;
-    background-color: darken($div-background, 2%);
+    background-color: $div-background;
     color: $text-color;
     font-family: $base-font;
     transition: all 0.3s ease;
     box-sizing: border-box;
+    font-weight: 500;
 
     &:focus {
       outline: none;
       border-color: $accent-color;
       transform: translateY(-2px);
-      background-color: darken($div-background, 1%);
+      box-shadow: 0 4px 20px rgba($accent-color, 0.1);
     }
 
     &::placeholder {
-      color: darken($text-color, 30%);
+      color: lighten($text-color, 40%);
     }
   }
 
   &-button {
     width: 100%;
-    padding: 16px 20px;
+    padding: 16px 24px;
     border: none;
     border-radius: 12px;
-    background-color: $accent-color;
+    background: linear-gradient(135deg, $accent-color, $accent-color-darker);
     color: white;
     font-family: $base-font;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    letter-spacing: 0.3px;
 
     &::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      transition: 0.5s;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
     }
 
     &:hover {
-      background-color: $accent-color-darker;
-      transform: translateY(-2px);
+      background: linear-gradient(135deg, $accent-color-darker, darken($accent-color-darker, 10%));
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba($accent-color, 0.3);
+
+      &::before {
+        width: 200px;
+        height: 200px;
+      }
+    }
+
+    &:active {
+      transform: translateY(-1px);
     }
 
     &:disabled {
-      background-color: lighten($accent-color, 20%);
+      background: linear-gradient(135deg, lighten($accent-color, 20%), lighten($accent-color-darker, 20%));
       cursor: not-allowed;
       transform: none;
+      box-shadow: none;
+
+      &:hover {
+        background: linear-gradient(135deg, lighten($accent-color, 20%), lighten($accent-color-darker, 20%));
+      }
     }
   }
 
   &-footer {
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.5s forwards;
+    padding-top: 20px;
+    border-top: 1px solid $border-color;
 
     &-text {
-      font-size: 16px;
-      color: $text-color;
+      font-size: 15px;
+      color: lighten($text-color, 20%);
       font-family: $base-font;
       margin: 0;
-      opacity: 0.8;
+      line-height: 1.5;
     }
 
     &-link {
       color: $accent-color;
       text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, $accent-color, $accent-color-darker);
+        transition: width 0.3s ease;
+      }
 
       &:hover {
         color: $accent-color-darker;
-        text-decoration: underline;
+
+        &::after {
+          width: 100%;
+        }
       }
     }
   }
@@ -151,40 +194,66 @@
     color: $accent-color-darker;
     margin: 20px 0;
     font-family: $base-font;
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 600;
   }
 
   &__buttons {
     display: flex;
-    gap: 30px;
+    gap: 20px;
     justify-content: center;
+    flex-wrap: wrap;
+
+    @media (max-width: 480px) {
+      gap: 12px;
+    }
   }
 
   &__button {
-    padding: 12px 30px;
-    border: 2px solid $button-color;
-    border-radius: 8px;
+    padding: 14px 32px;
+    border: 2px solid $border-color;
+    border-radius: 12px;
     background-color: transparent;
     color: $text-color;
     font-family: $base-font;
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    letter-spacing: 0.3px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba($accent-color, 0.1);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
 
     &:hover {
       border-color: $accent-color;
       color: $accent-color;
+
+      &::before {
+        width: 150px;
+        height: 150px;
+      }
     }
 
     &.active {
-      background-color: $accent-color;
+      background: linear-gradient(135deg, $accent-color, $accent-color-darker);
       border-color: $accent-color;
       color: white;
 
       &:hover {
-        background-color: $accent-color-darker;
+        background: linear-gradient(135deg, $accent-color-darker, darken($accent-color-darker, 10%));
         border-color: $accent-color-darker;
       }
     }
@@ -204,4 +273,70 @@
 
 .auth {
   @include sections-auth;
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    margin: 20px auto;
+    padding: 0 15px;
+    min-height: 60vh;
+  }
+
+  .auth-content {
+    padding: 40px 30px;
+    border-radius: 20px;
+  }
+
+  .auth-title {
+    font-size: 36px;
+  }
+
+  .auth-subtitle {
+    font-size: 18px;
+  }
+
+  .register-type__button {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-container {
+    margin: 15px auto;
+    padding: 0 12px;
+  }
+
+  .auth-content {
+    padding: 30px 20px;
+    border-radius: 16px;
+  }
+
+  .auth-title {
+    font-size: 32px;
+  }
+
+  .auth-subtitle {
+    font-size: 16px;
+  }
+
+  .auth-input {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+
+  .auth-button {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
+  .register-type__buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .register-type__button {
+    width: 100%;
+    padding: 14px;
+  }
 }

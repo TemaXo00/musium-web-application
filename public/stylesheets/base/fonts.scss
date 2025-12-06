@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Lora';
-  src: url('../fonts/Lora.ttf') format('truetype');
+  src: url('../../fonts/Lora.ttf') format('truetype');
   font-weight: 500;
   font-style: italic;
   font-display: swap;
@@ -8,8 +8,16 @@
 
 @font-face {
   font-family: 'SourceSans';
-  src: url('../fonts/SourceSans.ttf') format('truetype');
+  src: url('../../fonts/SourceSans.ttf') format('truetype');
   font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SourceSans';
+  src: url('../../fonts/SourceSans.ttf') format('truetype');
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }

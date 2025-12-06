@@ -2,97 +2,139 @@
   $section-name: &;
 
   & {
-    margin: 20px;
+    margin: 30px auto;
+    max-width: 1400px;
+    padding: 0 20px;
   }
+
   &-container {
-    margin: 20px;
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
   }
 
   &__title {
-    font-size: 54px;
+    font-size: 48px;
     color: $accent-color;
     font-family: $logo-font;
     user-select: none;
     opacity: 0;
-    margin: 40px 0;
+    margin: 0 0 40px 0;
     animation: fadeInUp 0.8s ease 0.2s forwards;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    position: relative;
+    padding-bottom: 20px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, $accent-color, $accent-color-darker);
+      border-radius: 2px;
+    }
   }
 
   &__form {
     margin-bottom: 40px;
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.3s forwards;
+    background: $div-background;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid $border-color;
+    box-shadow: 0 4px 25px $shadow-color;
   }
 
   .search-input-group {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 16px;
+    margin-bottom: 25px;
 
     .search-input {
-      width: 650px;
-      padding: 16px 20px;
-      font-size: 20px;
-      border: 2px solid $button-color;
-      border-radius: 12px;
+      flex: 1;
+      min-width: 0;
+      padding: 18px 24px;
+      font-size: 18px;
+      border: 2px solid $border-color;
+      border-radius: 14px;
       background-color: $div-background;
       color: $text-color;
       font-family: $base-font;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 500;
 
       &:focus {
         outline: none;
         border-color: $accent-color;
         transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba($accent-color, 0.15);
       }
 
       &::placeholder {
-        color: lighten($text-color, 30%);
+        color: lighten($text-color, 35%);
       }
     }
 
     .search-button {
-      padding: 16px 20px;
+      padding: 18px 32px;
       border: none;
-      border-radius: 12px;
-      background-color: $button-color;
+      border-radius: 14px;
+      background: linear-gradient(135deg, $accent-color, $accent-color-darker);
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
+      color: white;
+      font-family: $base-font;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
 
       &::before {
         content: '';
         position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-        transition: left 0.5s;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
       }
 
       &:hover {
-        background: $button-hover-color;
-        transform: translateY(-2px) scale(1.05);
+        background: linear-gradient(135deg, $accent-color-darker, darken($accent-color-darker, 10%));
+        transform: translateY(-3px);
+        box-shadow: 0 8px 30px rgba($accent-color, 0.3);
 
         &::before {
-          left: 100%;
+          width: 200px;
+          height: 200px;
+        }
+
+        .search-icon {
+          transform: scale(1.1);
         }
       }
 
-      .search-icon {
-        width: 28px;
-        height: 28px;
-        pointer-events: none;
-        transition: transform 0.3s ease;
+      &:active {
+        transform: translateY(-1px);
       }
 
-      &:hover .search-icon {
-        transform: scale(1.1);
+      .search-icon {
+        width: 22px;
+        height: 22px;
+        pointer-events: none;
+        transition: transform 0.3s ease;
       }
     }
   }
@@ -106,25 +148,30 @@
     .filter-group {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      flex: 1;
+      min-width: 200px;
 
       .filter-label {
         color: $text-color;
         font-family: $base-font;
-        font-size: 16px;
-        font-weight: 500;
+        font-size: 15px;
+        font-weight: 600;
+        min-width: 80px;
       }
 
       .filter-select {
-        padding: 10px 14px;
-        border: 2px solid $button-color;
-        border-radius: 8px;
+        flex: 1;
+        padding: 12px 16px;
+        border: 2px solid $border-color;
+        border-radius: 10px;
         background-color: $div-background;
         color: $text-color;
         font-family: $base-font;
         cursor: pointer;
         transition: all 0.3s ease;
-        font-size: 16px;
+        font-size: 15px;
+        font-weight: 500;
 
         &:hover {
           border-color: $accent-color;
@@ -134,25 +181,37 @@
         &:focus {
           outline: none;
           border-color: $accent-color;
+          box-shadow: 0 0 0 3px rgba($accent-color, 0.1);
         }
       }
     }
 
     .filter-reset {
-      color: $accent-color;
-      text-decoration: none;
-      font-family: $base-font;
-      padding: 10px 20px;
+      padding: 12px 24px;
       border: 2px solid $accent-color;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      font-size: 16px;
-      font-weight: 500;
+      border-radius: 10px;
+      background: transparent;
+      color: $accent-color;
+      font-family: $base-font;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
 
       &:hover {
-        background-color: $accent-color;
+        background: $accent-color;
         color: white;
-        transform: translateY(-2px);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba($accent-color, 0.2);
+      }
+
+      &:active {
+        transform: translateY(-1px);
       }
     }
   }
@@ -162,64 +221,76 @@
     animation: fadeInUp 0.8s ease 0.4s forwards;
 
     &__title {
-      font-size: 32px;
+      font-size: 28px;
       color: $text-color;
       font-family: $base-font;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       display: flex;
       align-items: center;
       gap: 12px;
       flex-wrap: wrap;
+      font-weight: 600;
     }
 
     &__count {
       color: $accent-color;
-      font-size: 24px;
-      font-weight: 500;
+      font-size: 20px;
+      font-weight: 600;
+      background: rgba($accent-color, 0.1);
+      padding: 6px 12px;
+      border-radius: 20px;
     }
 
     .active-filters {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       flex-wrap: wrap;
+      padding: 20px;
+      background: $div-background;
+      border-radius: 16px;
+      border: 1px solid $border-color;
 
       &__label {
         color: $text-color;
         font-family: $base-font;
-        font-size: 16px;
-        font-weight: 500;
+        font-size: 15px;
+        font-weight: 600;
+        white-space: nowrap;
       }
 
       &__list {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
         flex-wrap: wrap;
       }
 
       .active-filter {
         display: flex;
         align-items: center;
-        gap: 6px;
-        padding: 8px 12px;
-        background-color: $div-background;
-        border-radius: 8px;
+        gap: 8px;
+        padding: 8px 14px;
+        background: rgba($accent-color, 0.1);
+        border-radius: 10px;
         font-size: 14px;
-        color: $text-color;
+        color: $accent-color;
         font-family: $base-font;
+        font-weight: 500;
         transition: all 0.3s ease;
+        border: 1px solid rgba($accent-color, 0.2);
 
         &:hover {
-          background-color: $button-hover-color;
+          background: rgba($accent-color, 0.2);
           transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba($accent-color, 0.15);
         }
 
         &__remove {
           background: none;
           border: none;
-          color: $accent-color;
+          color: $accent-color-darker;
           font-weight: bold;
           font-size: 16px;
           cursor: pointer;
@@ -237,7 +308,7 @@
 
           &:hover {
             color: darken($accent-color, 20%);
-            background-color: rgba(0,0,0,0.1);
+            background: rgba($accent-color, 0.2);
             transform: scale(1.1);
           }
         }
@@ -254,12 +325,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px;
+      padding: 24px;
       background-color: $div-background;
-      border-radius: 12px;
-      transition: all 0.3s ease;
+      border-radius: 16px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       opacity: 0;
       animation: fadeInUp 0.6s ease forwards;
+      border: 1px solid $border-color;
+      box-shadow: 0 4px 15px $shadow-color;
 
       @for $i from 1 through 20 {
         &:nth-child(#{$i}) {
@@ -269,6 +342,13 @@
 
       &:hover {
         transform: translateX(8px);
+        border-color: $accent-color;
+        box-shadow: 0 6px 25px rgba($accent-color, 0.15);
+      }
+
+      &:hover &-img {
+        transform: scale(1.05);
+        border-color: $accent-color;
       }
 
       &-left {
@@ -276,81 +356,91 @@
         align-items: center;
         gap: 20px;
         flex: 1;
+        min-width: 0;
       }
 
       &-img {
-        aspect-ratio: 1;
-        border-radius: 8px;
+        width: 80px;
         height: 80px;
+        border-radius: 10px;
+        object-fit: cover;
         transition: all 0.3s ease;
         user-select: none;
         pointer-events: none;
-
-        &:hover {
-          transform: scale(1.05);
-        }
+        border: 2px solid $border-color;
+        flex-shrink: 0;
       }
 
       &-info {
         flex: 1;
+        min-width: 0;
       }
 
       &-header {
         display: flex;
         align-items: center;
         gap: 12px;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
         flex-wrap: wrap;
       }
 
       &-name {
-        font-size: 24px;
+        font-size: 20px;
         color: $text-color;
         font-family: $base-font;
         margin: 0;
         font-weight: 600;
+        line-height: 1.3;
+        word-break: break-word;
       }
 
       &-type {
-        padding: 4px 8px;
-        background-color: $accent-color;
+        padding: 4px 10px;
+        background: $accent-color;
         color: white;
-        border-radius: 4px;
+        border-radius: 20px;
         font-size: 12px;
         font-family: $base-font;
         text-transform: uppercase;
         font-weight: 600;
+        letter-spacing: 0.5px;
+        flex-shrink: 0;
       }
 
       &-artist, &-genre {
-        font-size: 16px;
-        color: $text-color;
+        font-size: 15px;
+        color: lighten($text-color, 15%);
         font-family: $base-font;
-        margin: 4px 0;
+        margin: 6px 0;
+        line-height: 1.4;
 
         strong {
-          color: $accent-color;
+          color: $accent-color-darker;
           font-weight: 600;
         }
       }
 
       &-stats {
         display: flex;
-        gap: 16px;
-        margin-top: 8px;
+        gap: 20px;
+        margin-top: 10px;
         flex-wrap: wrap;
       }
 
       &-views, &-date {
-        font-size: 14px;
-        color: lighten($text-color, 20%);
+        font-size: 13px;
+        color: lighten($text-color, 25%);
         font-family: $base-font;
+        display: flex;
+        align-items: center;
+        gap: 6px;
       }
 
       &-right {
         display: flex;
         align-items: center;
         gap: 12px;
+        flex-shrink: 0;
       }
 
       &-buttons {
@@ -362,12 +452,12 @@
 
     &__buttons {
       &-play {
-        width: 50px;
+        min-width: 50px;
         height: 50px;
-        border-radius: 8px;
-        border: none;
-        background-color: $button-color;
-        transition: all 0.3s ease;
+        border-radius: 12px;
+        border: 2px solid $accent-color;
+        background: linear-gradient(135deg, $accent-color, $accent-color-darker);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         user-select: none;
         cursor: pointer;
         display: flex;
@@ -375,30 +465,40 @@
         justify-content: center;
         position: relative;
         overflow: hidden;
+        color: white;
+        font-weight: 600;
 
         &::before {
           content: '';
           position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-          transition: left 0.5s;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.2);
+          transform: translate(-50%, -50%);
+          transition: width 0.6s ease, height 0.6s ease;
         }
 
         &:hover {
-          background: $button-hover-color;
-          transform: translateY(-2px) scale(1.05);
+          background: linear-gradient(135deg, $accent-color-darker, darken($accent-color-darker, 10%));
+          transform: translateY(-3px) scale(1.05);
+          box-shadow: 0 6px 20px rgba($accent-color, 0.3);
 
           &::before {
-            left: 100%;
+            width: 150px;
+            height: 150px;
           }
         }
 
+        &:active {
+          transform: translateY(-1px);
+        }
+
         img {
-          width: 24px;
-          height: 24px;
+          width: 20px;
+          height: 20px;
           pointer-events: none;
           transition: transform 0.3s ease;
         }
@@ -407,31 +507,42 @@
           transform: scale(1.1);
         }
       }
-
-      &-play {
-        text-decoration: none;
-      }
     }
   }
 
   &-no-results, &-empty {
     text-align: center;
-    padding: 60px 20px;
+    padding: 60px 30px;
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.6s forwards;
+    background: $div-background;
+    border-radius: 20px;
+    border: 1px solid $border-color;
+    margin: 30px 0;
+
+    &__icon {
+      width: 80px;
+      height: 80px;
+      color: lighten($text-color, 40%);
+      margin-bottom: 24px;
+      opacity: 0.6;
+    }
 
     &__message {
-      font-size: 28px;
+      font-size: 22px;
       color: $text-color;
       font-family: $base-font;
-      margin: 50px 0;
+      margin: 0 0 16px 0;
       font-weight: 600;
     }
 
     &__suggestion {
-      font-size: 18px;
-      color: lighten($text-color, 20%);
+      font-size: 16px;
+      color: lighten($text-color, 25%);
       font-family: $base-font;
+      line-height: 1.5;
+      max-width: 500px;
+      margin: 0 auto;
     }
   }
 }
@@ -449,4 +560,154 @@
 
 .search {
   @include sections-search;
+}
+
+@media (max-width: 1024px) {
+  .search {
+    padding: 0 20px;
+  }
+
+  .search__title {
+    font-size: 42px;
+  }
+
+  .search__form {
+    padding: 25px;
+  }
+
+  .search-input-group {
+    flex-direction: column;
+    gap: 12px;
+
+    .search-input {
+      width: 100%;
+      padding: 16px 20px;
+    }
+
+    .search-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .search {
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+
+  .search__title {
+    font-size: 36px;
+    margin-bottom: 30px;
+  }
+
+  .search__form {
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .search-filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+
+    .filter-group {
+      min-width: auto;
+    }
+
+    .filter-reset {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .search-results__item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    padding: 20px;
+
+    &-left {
+      width: 100%;
+    }
+
+    &-right {
+      width: 100%;
+      justify-content: space-between;
+      padding-top: 20px;
+      border-top: 1px solid $border-color;
+    }
+  }
+
+  .search-results__item-name {
+    font-size: 18px;
+  }
+
+  .search-results__item-artist,
+  .search-results__item-genre {
+    font-size: 14px;
+  }
+
+  .search-no-results,
+  .search-empty {
+    padding: 40px 20px;
+  }
+
+  .search-no-results__message,
+  .search-empty__message {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search {
+    margin: 15px auto;
+    padding: 0 12px;
+  }
+
+  .search__title {
+    font-size: 32px;
+    margin-bottom: 25px;
+  }
+
+  .search__form {
+    padding: 18px;
+    margin-bottom: 25px;
+  }
+
+  .search-input-group {
+    .search-input {
+      padding: 14px 18px;
+      font-size: 16px;
+    }
+
+    .search-button {
+      padding: 14px 20px;
+      font-size: 15px;
+    }
+  }
+
+  .search-results__item {
+    padding: 18px;
+  }
+
+  .search-results__item-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .search-results__buttons-play {
+    height: 44px;
+    min-width: 44px;
+  }
+
+  .active-filters {
+    padding: 16px;
+
+    .active-filter {
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+  }
 }
