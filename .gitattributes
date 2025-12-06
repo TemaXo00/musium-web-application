@@ -1,0 +1,26 @@
+*.ejs linguist-language=JavaScript
+
+*.css linguist-language=JavaScript
+
+package-lock.json linguist-vendored
+*.min.js linguist-vendored
+yarn.lock linguist-vendored
+
+*.js linguist-detectable=true
+
+*.html linguist-language=JavaScript
+
+*.json linguist-detectable=false
+.gitattributes linguist-detectable=false
+.gitignore linguist-detectable=false
+README.md linguist-detectable=false
+
+*.png linguist-vendored
+*.jpg linguist-vendored
+*.jpeg linguist-vendored
+*.gif linguist-vendored
+*.svg linguist-vendored
+*.ico linguist-vendored
+
+*.md linguist-documentation
+LICENSE linguist-documentation

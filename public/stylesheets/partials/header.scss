@@ -40,17 +40,15 @@
     }
 
     &-image {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       border-radius: 12px;
       overflow: hidden;
       flex-shrink: 0;
       position: relative;
-      border: 2px solid $border-color;
       transition: all 0.3s ease;
 
       &:hover {
-        border-color: $accent-color;
         transform: rotate(5deg) scale(1.05);
       }
     }

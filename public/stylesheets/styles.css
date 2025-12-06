@@ -348,17 +348,15 @@ body {
   transform: translateY(0);
 }
 .header__logo-image {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 12px;
   overflow: hidden;
   flex-shrink: 0;
   position: relative;
-  border: 2px solid #404040;
   transition: all 0.3s ease;
 }
 .header__logo-image:hover {
-  border-color: #DDB892;
   transform: rotate(5deg) scale(1.05);
 }
 .header__logo-img {
