@@ -1,5 +1,6 @@
-class AdminReports {
+class AdminReports extends AdminBase {
     constructor() {
+        super();
         this.isGenerating = false;
         this.currentReportType = null;
     }
@@ -65,7 +66,6 @@ class AdminReports {
         });
 
         document.querySelector(`[data-report="${reportType}"]`).classList.add('selected');
-
         document.getElementById('report-type').value = reportType;
 
         const filtersSection = document.getElementById('report-filters');
@@ -109,12 +109,12 @@ class AdminReports {
         const data = Object.fromEntries(formData.entries());
 
         if (!data.startDate || !data.endDate) {
-            this.showError('Please select both start and end dates');
+            this.showReportError('Please select both start and end dates');
             return;
         }
 
         if (new Date(data.startDate) > new Date(data.endDate)) {
-            this.showError('Start date cannot be after end date');
+            this.showReportError('Start date cannot be after end date');
             return;
         }
 
@@ -124,9 +124,7 @@ class AdminReports {
         try {
             const response = await fetch('/admin/reports/generate', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
 
@@ -145,10 +143,10 @@ class AdminReports {
                 alert('Report generated successfully!');
             } else {
                 const errorData = await response.json();
-                this.showError(errorData.error || 'Failed to generate report');
+                this.showReportError(errorData.error || 'Failed to generate report');
             }
         } catch (error) {
-            this.showError('Network error: ' + error.message);
+            this.showReportError('Network error: ' + error.message);
         } finally {
             this.isGenerating = false;
         }
@@ -164,7 +162,7 @@ class AdminReports {
         document.getElementById('report-status-section').classList.add('hidden');
     }
 
-    showError(message) {
+    showReportError(message) {
         document.getElementById('report-status-section').classList.remove('hidden');
         document.getElementById('report-loading').classList.add('hidden');
         document.getElementById('report-error').classList.remove('hidden');
