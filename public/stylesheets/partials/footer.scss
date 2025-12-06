@@ -1,14 +1,19 @@
 .footer {
+  background-color: $div-background;
+  border-top: 1px solid $border-color;
+  margin-top: auto;
+  flex-shrink: 0;
+
   &__container {
-    background-color: $div-background;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 30px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
     user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -webkit-user-drag: none;
+    flex-wrap: wrap;
+    gap: 30px;
   }
 
   &__links {
@@ -17,104 +22,256 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
+    flex: 1;
+    min-width: 200px;
 
     &-item {
       display: flex;
       align-items: center;
-      gap: 8px;
-      transition: transform 0.2s ease;
+      gap: 12px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
+      padding: 8px 0;
+      border-radius: 10px;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, $hover-overlay, transparent);
+        transition: left 0.6s ease;
+      }
 
       &::after {
         content: '';
         position: absolute;
         width: 0;
         height: 2px;
-        bottom: -5px;
+        bottom: 0;
         left: 0;
-        background-color: $accent-color;
-        transition: width 0.3s ease;
+        background: linear-gradient(90deg, $accent-color, $accent-color-darker);
+        transition: width 0.4s ease;
       }
 
       &:hover {
-        transform: translateX(5px);
-      }
+        transform: translateX(8px);
+        padding-left: 8px;
 
-      &:hover::after {
-        width: 100%;
+        &::before {
+          left: 100%;
+        }
+
+        &::after {
+          width: 100%;
+        }
       }
     }
 
     &-logo {
-      width: 70px;
-      aspect-ratio: 1;
+      width: 24px;
+      height: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      position: relative;
+      z-index: 1;
 
-      img {
+      svg, img {
         width: 100%;
         height: 100%;
         object-fit: contain;
-        user-select: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -webkit-user-drag: none;
+        color: $accent-color;
+        transition: transform 0.3s ease;
+      }
+
+      .footer__links-item:hover & svg,
+      .footer__links-item:hover & img {
+        transform: scale(1.2) rotate(10deg);
       }
     }
 
     &-text {
       text-decoration: none;
       color: inherit;
-      font-size: 32px;
+      font-size: 15px;
       font-family: $base-font;
-      color: $accent-color;
-      transition: color 0.2s ease;
+      color: $text-color;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+      font-weight: 500;
+
+      .footer__links-item:hover & {
+        color: $accent-color;
+        letter-spacing: 0.5px;
+      }
     }
   }
 
   &__app {
     text-align: center;
+    flex: 1;
+    min-width: 300px;
 
     &-text {
-      font-size: 80px;
+      font-size: 48px;
       font-family: $logo-font;
-      font-weight: bold;
-      color: $accent-color;
-    }
-  }
-
-  &__copyright {
-    &-item {
-      font-size: 32px;
-      font-family: $base-font;
+      font-weight: 600;
       color: $accent-color;
       margin: 0;
-      text-align: right;
       position: relative;
-      cursor: pointer;
-      transition: transform 0.2s ease, color 0.2s ease;
+      display: inline-block;
+      background: linear-gradient(45deg, $accent-color, $accent-color-darker);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 1px;
 
       &::after {
         content: '';
         position: absolute;
-        width: 0;
-        height: 2px;
         bottom: -5px;
-        right: 0;
-        background-color: $accent-color;
-        transition: width 0.3s ease;
-      }
-
-      &:hover {
-        transform: translateX(-5px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 3px;
+        background: linear-gradient(90deg, $accent-color, $accent-color-darker);
+        transition: width 0.4s ease;
       }
 
       &:hover::after {
         width: 100%;
       }
+    }
+  }
+
+  &__copyright {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    justify-content: flex-end;
+
+    &-item {
+      font-size: 14px;
+      font-family: $base-font;
+      color: lighten($text-color, 20%);
+      margin: 0;
+      text-align: right;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 8px 16px;
+      border-radius: 10px;
+      background: $hover-overlay;
+      opacity: 0.8;
+
+      &::before {
+        content: '©';
+        margin-right: 4px;
+      }
+
+      &:hover {
+        color: $accent-color;
+        opacity: 1;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba($accent-color, 0.15);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    &__container {
+      padding: 25px 16px;
+      gap: 25px;
+    }
+
+    &__app-text {
+      font-size: 42px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &__container {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px 15px;
+      gap: 25px;
+    }
+
+    &__links {
+      width: 100%;
+      align-items: center;
+
+      &-item {
+        justify-content: center;
+        max-width: 300px;
+        margin: 0 auto;
+
+        &:hover {
+          transform: translateY(-2px);
+          padding-left: 0;
+        }
+      }
+    }
+
+    &__app {
+      min-width: auto;
+      width: 100%;
+      order: -1;
+
+      &-text {
+        font-size: 36px;
+      }
+    }
+
+    &__copyright {
+      justify-content: center;
+      width: 100%;
+      min-width: auto;
+
+      &-item {
+        text-align: center;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__container {
+      padding: 16px 12px;
+      gap: 20px;
+    }
+
+    &__app-text {
+      font-size: 32px;
+    }
+
+    &__links {
+      gap: 12px;
+
+      &-text {
+        font-size: 14px;
+      }
+    }
+
+    &__copyright-item {
+      font-size: 13px;
+      padding: 6px 12px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    &__app-text {
+      font-size: 28px;
     }
   }
 }

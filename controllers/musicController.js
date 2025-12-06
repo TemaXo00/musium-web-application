@@ -40,10 +40,10 @@ class musicController extends BaseController {
 
     async fetchAllNewContent() {
         const [songs, albums, eps, releases] = await Promise.all([
-            this.musicRepository.getNewSongs(5),
-            this.musicRepository.getNewAlbums(5),
-            this.musicRepository.getNewEPs(5),
-            this.musicRepository.getNewReleases(5)
+            this.musicRepository.getNewSongs(6),
+            this.musicRepository.getNewAlbums(6),
+            this.musicRepository.getNewEPs(6),
+            this.musicRepository.getNewReleases(6)
         ]);
 
         return {
