@@ -3,6 +3,7 @@ class AdminPanel {
         this.isSubmitting = false;
         this.eventBound = false;
         this.currentTab = 'tracks';
+        this.reportsModule = new AdminReports();
         this.init();
     }
 
@@ -19,6 +20,10 @@ class AdminPanel {
             tab.addEventListener('click', (e) => {
                 const tabName = e.currentTarget.getAttribute('data-tab');
                 this.switchTab(tabName);
+
+                if (tabName === 'reports') {
+                    this.reportsModule.init();
+                }
             });
         });
 
@@ -52,7 +57,9 @@ class AdminPanel {
         activeContent.classList.add('active');
         activeContent.style.display = 'block';
 
-        this.loadTabContent(tabName);
+        if (tabName !== 'reports') {
+            this.loadTabContent(tabName);
+        }
     }
 
     async loadTabContent(tabName) {
@@ -299,6 +306,18 @@ class AdminPanel {
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;");
+    }
+
+    selectReportType(reportType) {
+        this.reportsModule.selectReportType(reportType);
+    }
+
+    cancelReport() {
+        this.reportsModule.cancelReport();
+    }
+
+    generateReport() {
+        this.reportsModule.generateReport();
     }
 }
 

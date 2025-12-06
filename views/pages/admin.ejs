@@ -15,6 +15,9 @@
             <button class="admin-tab" data-tab="users">
                 Users
             </button>
+            <button class="admin-tab" data-tab="reports">
+                Reports
+            </button>
         </div>
 
         <div class="admin-content">
@@ -81,6 +84,110 @@
                     <div class="admin-items" id="users-list">
                         <div class="admin-loading">
                             <div class="admin-loading__message">Loading users...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-tab-content" id="reports-tab">
+                <div class="admin-section">
+                    <div class="admin-section__header">
+                        <h2 class="admin-section__title">
+                            Reports Generation
+                            <span class="admin-section__count" id="reports-count"></span>
+                        </h2>
+                    </div>
+                    <div class="reports-options" id="reports-list">
+                        <div class="admin-section">
+                            <h3 class="admin-section__subtitle">Select Report Type</h3>
+                            <div class="reports-grid">
+                                <div class="report-option" data-report="content-statistics">
+                                    <div class="report-option__content">
+                                        <h4 class="report-option__title">Content Statistics</h4>
+                                        <p class="report-option__description">Generate detailed statistics about music content including views, genres, and status distribution.</p>
+                                    </div>
+                                </div>
+
+                                <div class="report-option" data-report="user-activity">
+                                    <div class="report-option__content">
+                                        <h4 class="report-option__title">User Activity</h4>
+                                        <p class="report-option__description">Report on user registrations, content submissions, and user engagement metrics.</p>
+                                    </div>
+                                </div>
+
+                                <div class="report-option" data-report="approval-stats">
+                                    <div class="report-option__content">
+                                        <h4 class="report-option__title">Approval Statistics</h4>
+                                        <p class="report-option__description">Track content approval process, decision times, and status changes over time.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="admin-section report-filters hidden" id="report-filters">
+                            <h3 class="admin-section__subtitle">Report Parameters</h3>
+                            <form id="report-form" class="report-form">
+                                <input type="hidden" id="report-type" name="reportType">
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="report-format" class="form-label">Format:</label>
+                                        <select id="report-format" name="format" class="form-control">
+                                            <option value="csv">CSV</option>
+                                            <option value="json">JSON</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="report-start-date" class="form-label">Start Date:</label>
+                                        <input type="date" id="report-start-date" name="startDate" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="report-end-date" class="form-label">End Date:</label>
+                                        <input type="date" id="report-end-date" name="endDate" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-row hidden" id="genre-filter-row">
+                                    <div class="form-group">
+                                        <label for="report-genre" class="form-label">Genre:</label>
+                                        <select id="report-genre" name="genre" class="form-control">
+                                            <option value="all">All Genres</option>
+                                            <% if (typeof genres !== 'undefined' && genres && genres.length > 0) { %>
+                                                <% genres.forEach(function(genre) { %>
+                                                    <option value="<%= genre %>"><%= genre %></option>
+                                                <% }); %>
+                                            <% } %>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="report-status" class="form-label">Status:</label>
+                                        <select id="report-status" name="status" class="form-control">
+                                            <option value="all">All Statuses</option>
+                                            <option value="pending">Pending</option>
+                                            <option value="approved">Approved</option>
+                                            <option value="declined">Declined</option>
+                                            <option value="removed">Removed</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="button" class="admin-search__button" onclick="adminPanel.cancelReport()">Cancel</button>
+                                    <button type="submit" class="admin-search__button" id="generate-report-btn">Generate Report</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="admin-section hidden" id="report-status-section">
+                            <div class="admin-loading" id="report-loading">
+                                <div class="admin-loading__message">Generating report...</div>
+                            </div>
+                            <div class="admin-no-data hidden" id="report-error">
+                                <div class="admin-no-data__message" id="report-error-message"></div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -135,6 +135,12 @@ class MusicRepository extends MusicEntityRepository {
 
         return await this.query(query, [entityId]);
     }
+
+    async getAllGenres() {
+        const query = 'SELECT name FROM genre ORDER BY name';
+        const result = await this.query(query);
+        return result.map(row => row.name);
+    }
 }
 
 module.exports = MusicRepository;

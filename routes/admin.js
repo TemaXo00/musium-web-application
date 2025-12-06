@@ -21,6 +21,7 @@ class adminRoutes {
         this.router.post('/reject/:type/:id', this.adminController.rejectEntity.bind(this.adminController));
         this.router.post('/users/search', this.adminController.searchUsers.bind(this.adminController));
         this.router.delete('/users/delete/:id', this.adminController.deleteUser.bind(this.adminController));
+        this.router.post('/reports/generate', this.adminController.generateReport.bind(this.adminController));
     }
 
     getRouter() {
