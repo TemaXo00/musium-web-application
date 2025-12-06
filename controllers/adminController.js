@@ -35,7 +35,7 @@ class adminController extends BaseController {
     async renderAdminPage(req, res) {
         try {
             const genres = await this.musicRepository.getAllGenres();
-            res.render('pages/admin', {
+            res.render('admin', {
                 title: 'Admin Panel',
                 user: req.session.user || null,
                 currentPage: 'admin',
